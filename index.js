@@ -19,12 +19,12 @@ const corsOptions = {
 };
 const io = new Server(httpServer, {
   cors: corsOptions,
-  cookie: {
-    maxAge: 3600000,
-    sameSite: "none",
-    secure: true,
-    httpOnly: true,
-  },
+  // cookie: {
+  //   maxAge: 3600000,
+  //   sameSite: "none",
+  //   secure: true,
+  //   httpOnly: true,
+  // },
 });
 
 app.use(cors(corsOptions));
