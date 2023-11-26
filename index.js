@@ -22,7 +22,7 @@ const io = new Server(httpServer, {
   cookie: {
     sameSite: "none",
     secure: true,
-    httpOnly: true,
+    // httpOnly: true,
   },
 });
 
