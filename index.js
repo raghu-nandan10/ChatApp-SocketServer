@@ -19,6 +19,7 @@ const corsOptions = {
 };
 const io = new Server(httpServer, {
   cors: corsOptions,
+  cookie: true,
 });
 
 app.use(cors(corsOptions));

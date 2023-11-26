@@ -8,7 +8,6 @@ const getChatFromDB = async (username) => {
 };
 
 const typingEmit = (socket, io) => {
-  console.log("top " + socket.handshake.headers.cookie);
   if (!socket.handshake.headers.cookie) {
     console.log("first " + socket.handshake.headers.cookie);
     socket.emit("cookie:notFound", {});
