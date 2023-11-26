@@ -8,12 +8,15 @@ const getChatFromDB = async (username) => {
 };
 
 const typingEmit = (socket, io) => {
+  console.log("top " + socket.handshake.headers.cookie);
   if (!socket.handshake.headers.cookie) {
+    console.log("first " + socket.handshake.headers.cookie);
     socket.emit("cookie:notFound", {});
     return;
   }
   const cookies = parse(socket.handshake.headers.cookie);
   if (cookies && cookies.access_token) {
+    console.log("second " + socket.handshake.headers.cookie);
     const typingUser = jwtDecode(cookies.access_token);
     socket.broadcast.emit("show:typing", { username: typingUser.username });
   }
