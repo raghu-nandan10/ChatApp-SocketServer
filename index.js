@@ -7,17 +7,21 @@ import { configDotenv } from "dotenv";
 import cookieParser from "cookie-parser";
 import { updateSocketId } from "./utils/UpdateUserSocket.js";
 import { chatHandler } from "./handlers/chat.js";
+import cors from "cors";
 import mongoose from "mongoose";
 configDotenv();
 const app = express();
 const httpServer = createServer(app);
+const corsOptions = {
+  origin: [process.env.FRONTEND_ORIGIN, process.env.LOCAL_ORIGIN],
+  credentials: true,
+  methods: ["GET", "POST"],
+};
 const io = new Server(httpServer, {
-  cors: {
-    origin: [process.env.FRONTEND_ORIGIN, process.env.LOCAL_ORIGIN],
-    credentials: true,
-    methods: ["GET", "POST"],
-  },
+  cors: corsOptions,
 });
+
+app.use(cors(corsOptions));
 
 app.use(cookieParser());
 
