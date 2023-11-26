@@ -11,6 +11,8 @@ import cors from "cors";
 import mongoose from "mongoose";
 configDotenv();
 const app = express();
+app.use(cookieParser());
+
 const httpServer = createServer(app);
 const corsOptions = {
   origin: [process.env.FRONTEND_ORIGIN, process.env.LOCAL_ORIGIN],
@@ -19,17 +21,7 @@ const corsOptions = {
 };
 const io = new Server(httpServer, {
   cors: corsOptions,
-  // cookie: {
-  //   maxAge: 3600000,
-  //   sameSite: "none",
-  //   secure: true,
-  //   httpOnly: true,
-  // },
 });
-
-app.use(cors(corsOptions));
-
-app.use(cookieParser());
 
 const onConnection = (socket) => {
   updateSocketId(socket, io);
